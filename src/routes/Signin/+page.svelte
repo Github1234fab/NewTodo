@@ -1,10 +1,10 @@
 <script>
-        import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+        import { signInWithEmailAndPassword } from "firebase/auth";
+          import { auth } from '../../lib/firebase.js';
 
         let email = "";
         let password = "";
 
-        const auth = getAuth();
 
         const login = async () => {
                 try {
