@@ -1,53 +1,61 @@
 <script>
-        import { addDoc, collection, onSnapshot, deleteDoc, doc } from "firebase/firestore";
-        import {db} from "../../lib/firebase.js";
-        import { onMount } from "svelte";
-        
-        let produit = "";
-        let snap;
-        let inputData;
+  import { addDoc, collection, onSnapshot, deleteDoc, doc, query, where } from "firebase/firestore";
+  import { db, auth } from "../../lib/firebase.js";
+  import { onMount } from "svelte";
+  
+  let produit = "";
+  let snap;
+  let inputData;
 
-        onMount(() => {
-                onSnapshot(collection(db, "todos"), (snapshot) => {
-                        snap = snapshot.docs;
-                });
-        });
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      const q = query(collection(db, "todos"), where("userId", "==", user.uid));
+      onSnapshot(q, (snapshot) => {
+        snap = snapshot.docs;
+      });
+    } else {
+      snap = null;
+    }
+  });
 
-        async function handleSubmit(event) {
-                event.preventDefault();
-                console.log(db);
+  async function handleSubmit(event) {
+    event.preventDefault();
+    console.log(db);
 
-                inputData = {
-                        produit: produit.trim(),
-                        id: crypto.randomUUID(),
-                };
+    inputData = {
+      produit: produit.trim(),
+      id: crypto.randomUUID(),
+      userId: auth.currentUser.uid,
+    };
 
-                await addDoc(collection(db, "todos"), inputData);
-        }
+    await addDoc(collection(db, "todos"), inputData);
+  }
 
-        async function handleClick(id) {
-                const docRef = doc(db, "todos", id);
-                await deleteDoc(docRef);
-                console.log("Document successfully deleted!");
-        }
+  async function handleClick(id) {
+    const docRef = doc(db, "todos", id);
+    await deleteDoc(docRef);
+    console.log("Document successfully deleted!");
+  }
 </script>
 
 <div class="app-section">
-        <form on:submit={handleSubmit}>
-                <input type="text" bind:value={produit} />
-                <button type="submit">Submit</button>
-        </form>
-        {#if snap}
-                <ul>
-                        {#each snap as doc}
-                                <li>
-                                        {doc.data().produit}
-                                        <button on:click={() => handleClick(doc.id)}>x</button>
-                                </li>
-                        {/each}
-                </ul>
-        {/if}
+  <form on:submit={handleSubmit}>
+    <input type="text" bind:value={produit} />
+    <button type="submit">Submit</button>
+  </form>
+  {#if snap}
+    <ul>
+      {#each snap as doc}
+        <li>
+          {doc.data().produit}
+          <button on:click={() => handleClick(doc.id)}>x</button>
+        </li>
+      {/each}
+    </ul>
+  {/if}
 </div>
+
+
 
 <style>
 .app-section {
