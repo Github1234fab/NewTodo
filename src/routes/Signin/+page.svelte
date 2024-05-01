@@ -1,10 +1,9 @@
 <script>
         import { signInWithEmailAndPassword } from "firebase/auth";
-          import { auth } from '../../lib/firebase.js';
+            import { auth } from '../../lib/firebase.js';
 
         let email = "";
         let password = "";
-
 
         const login = async () => {
                 try {
@@ -12,9 +11,7 @@
                         // Signed in
                         const user = userCredential.user;
                         console.log("Logged in with email:", email);
-                        //         function goToApp (){
-                        //    window.location.href = "/Application";
-                        //         }
+                          window.location.href = "/Application"; 
                 } catch (error) {
                         const errorCode = error.code;
                         const errorMessage = error.message;
@@ -36,4 +33,6 @@
                         If you haven't an account, go to <a href="/Signup"> Sign Up</a>
                 </p>
         </form>
+        <a href="/Application">Application</a>
+
 </section>

@@ -1,7 +1,7 @@
 <script>
         import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
         import { collection, addDoc } from "firebase/firestore";
-        import db from "../../lib/firebase.js";
+        import {db} from "../../lib/firebase.js";
 
         let email = "";
         let password = "";

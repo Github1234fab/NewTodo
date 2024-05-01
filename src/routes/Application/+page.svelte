@@ -1,6 +1,6 @@
 <script>
         import { addDoc, collection, onSnapshot, deleteDoc, doc } from "firebase/firestore";
-        import db from "../../lib/firebase.js";
+        import {db} from "../../lib/firebase.js";
         import { onMount } from "svelte";
         
         let produit = "";
