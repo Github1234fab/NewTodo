@@ -1,12 +1,14 @@
 <script>
         import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
         import { collection, addDoc } from "firebase/firestore";
-        import {db} from "../../lib/firebase.js";
+        import { db } from "../../lib/firebase.js";
 
         let email = "";
         let password = "";
 
         const auth = getAuth();
+
+        //fonction pour créer un utilisateur avec un email et un mot de passe. Si la création est réussie, on ajoute l'utilisateur à la collection "users" dans Firestore
 
         const signup = async (event) => {
                 event.preventDefault();
@@ -15,13 +17,15 @@
                         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                         const user = userCredential.user;
                         console.log("User signed up successfully:", user);
+
                         // Ajouter l'utilisateur à la collection "users" dans Firestore
                         const usersCollection = collection(db, "users");
                         await addDoc(usersCollection, {
                                 email: user.email,
-                                // Ajoutez d'autres champs utilisateur ici si nécessaire
                         });
-                } catch (error) {
+                        window.location.href = "/Application";
+                     } 
+                catch (error) {
                         const errorCode = error.code;
                         const errorMessage = error.message;
                         console.log("no sign");

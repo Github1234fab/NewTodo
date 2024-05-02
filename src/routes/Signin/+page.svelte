@@ -5,6 +5,8 @@
         let email = "";
         let password = "";
 
+        //fonction pour se connecter avec un email et un mot de passe. Si la connexion est réussie, on redirige l'utilisateur vers la page d'application
+
         const login = async () => {
                 try {
                         const userCredential = await signInWithEmailAndPassword(auth, email, password);
