@@ -46,6 +46,7 @@
         }
 </script>
 
+
 <div class="app-section">
         <form on:submit={handleSubmit}>
                 <input type="text" bind:value={produit} />
@@ -63,36 +64,100 @@
         {/if}
 </div>
 
+
+<div class="app-section">
+        <form on:submit={handleSubmit}>
+                <input type="text" bind:value={produit} />
+                <button type="submit">Submit</button>
+        </form>
+
+        {#if snap}
+                <ul>
+                        {#each snap as doc}
+                                <li>
+                                        {doc.data().produit}
+                                        <button class="delete" on:click={() => handleClick(doc.id)}>x</button>
+                                </li>
+                        {/each}
+                </ul>
+        {/if}
+</div>
+
 <style>
         .app-section {
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                min-height: 400px;
+                height: 100vh;
+                background: linear-gradient(160deg, rgb(3, 3, 53), rgb(21, 21, 158));
+                color: rgb(255, 255, 255);
+                gap: 30px;
+        }
+
+        form {
+                display: flex;
                 flex-direction: column;
-        }
-        ul {
-                display: flex;
-                list-style: none;
-        }
-        li {
-                display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
-                padding: 1rem;
-                margin: 1rem;
-                background-color: white;
-                border-radius: 5px;
+                gap: 30px;
+                padding: 1rem 2rem;
+                border-radius: 20px;
+                margin-top: -50px;
+        }
+      
+
+        input {
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+                border: 1px solid pink;
+                background-color: transparent;
+                color: rgb(229, 228, 228);
+                font-weight: 700;
         }
         button {
-                background-color: red;
+                text-decoration: none;
                 color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+                cursor: pointer;
+                background-color: #1277dd;
                 border: none;
-                border-radius: 5px;
-                padding: 3px;
+                font-size: 1rem;
+                font-weight: 300;
                 margin-left: 10px;
         }
-        button:hover {
-                background-color: darkred;
+        .delete {
+                text-decoration: none;
+                color: white;
+                width: auto;
+                height: 40px;
+                padding: 0.5rem 1rem;
+                border-radius: 100%;
+                cursor: pointer;
+                background-color: transparent;
+                border: none;
+                font-size: 1rem;
+                font-weight: 900;
+                margin-left: 10px;
+                color: red;
+        }
+
+        ul {
+                display: flex;
+                flex-direction: column;
+                width: 90%;
+                padding: 1rem 2rem;
+                height: auto;
+                flex-wrap: wrap;
+                border: 1px solid pink;
+                border-radius: 10px;
+                gap: 20px;
+        }
+        ul > * {
+                flex: 1 1 30%;
+        }
+        li {
+                color: white;
         }
 </style>

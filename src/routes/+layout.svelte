@@ -1,6 +1,8 @@
 <script>
-import Header from '../Components/Header.svelte';
+        import "../../src/Styles.css";
+        import LogOut from "../Components/LogOut.svelte";
 </script>
-<Header/>
 
-<slot/>
+<LogOut />
+
+<slot />

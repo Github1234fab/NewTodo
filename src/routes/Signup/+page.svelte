@@ -24,27 +24,33 @@
                                 email: user.email,
                         });
                         window.location.href = "/Application";
-                     } 
-                catch (error) {
+                } catch (error) {
                         const errorCode = error.code;
                         const errorMessage = error.message;
+                        console.log("Error code:", errorCode);
+                        console.log("Error message:", errorMessage);
                         console.log("no sign");
                 }
         };
 </script>
 
-<section class="auth-section">
+<section class="signUp-section">
+        <h1>SignUp</h1>
         <form on:submit={signup}>
-                <label for="E-mail">E-mail</label>
-                <input type="email" bind:value={email} id="E-mail" name="E-mail" placeholder="Your e-mail" />
-                <label for="Password">Password </label>
-                <input
-                        type="password"
-                        bind:value={password}
-                        id="Password"
-                        name="Password"
-                        placeholder="6 characters minimum characters"
-                />
+                <div class="wrapper-input">
+                        <label for="E-mail">E-mail</label>
+                        <input type="email" bind:value={email} id="E-mail" name="E-mail" placeholder="Your e-mail" />
+                </div>
+                <div class="wrapper-input">
+                        <label for="Password">Password </label>
+                        <input
+                                type="password"
+                                bind:value={password}
+                                id="Password"
+                                name="Password"
+                                placeholder="6 characters minimum characters"
+                        />
+                </div>
 
                 <button type="submit">Sign Up</button>
                 <p>
@@ -53,3 +59,63 @@
                 </p>
         </form>
 </section>
+
+<style>
+        .signUp-section {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: linear-gradient(160deg, rgb(3, 3, 53), rgb(21, 21, 158));
+                color: rgb(255, 255, 255);
+                gap: 30px;
+        }
+        form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                background-color: rgba(0, 0, 255, 0.709);
+                border-radius: 20px;
+                width: 25%;
+                height: 50%;
+        }
+        .wrapper-input {
+                display: flex;
+                flex-direction: column;
+                justify-content: baseline;
+                align-items: baseline;
+                gap: 8px;
+        }
+        input {
+                padding: 0.5rem;
+                font-weight: 700;
+                border-radius: 0.25rem;
+                border: 1px solid pink;
+                background-color: transparent;
+                color: rgb(229, 228, 228);
+        }
+        label {
+                margin-left: -90px;
+        }
+        button {
+                text-decoration: none;
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 0.25rem;
+                cursor: pointer;
+                background-color: #1277dd;
+                border: none;
+                font-size: 1rem;
+                font-weight: 300;
+        }
+        p {
+                color: rgba(255, 255, 255, 0.775);
+                font-weight: 200;
+        }
+        a {
+                color: white;
+        }
+</style>
