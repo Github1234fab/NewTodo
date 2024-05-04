@@ -1,9 +1,9 @@
-<!-- <script>
-        import SignButtons from "../components/SignButtons.svelte";
+<script>
+        // import SignButtons from "../components/SignButtons.svelte";
 </script>
 
 <main>
-        <SignButtons />
+        <!-- <SignButtons /> -->
 </main>
 
 <style>
@@ -14,4 +14,4 @@
                 height: 100vh;
                 background: linear-gradient(160deg, rgb(3, 3, 53), rgb(21, 21, 158));
         }
-</style> -->
+</style>
