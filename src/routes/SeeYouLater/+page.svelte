@@ -21,6 +21,7 @@ h1 {
         font-size: 2rem;
 }       
 .pingouin {
+        margin-top: 20px;
         width: auto;
         height: 200px;
 }
