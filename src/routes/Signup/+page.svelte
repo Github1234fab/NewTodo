@@ -123,4 +123,10 @@ minimum of 6 characters"
         a {
                 color: white;
         }
+
+            @media (max-width: 768px) {
+                form {
+                        width: 90%;
+                }
+        }
 </style>
