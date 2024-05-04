@@ -1,9 +1,9 @@
 <script>
-        // import SignButtons from "../components/SignButtons.svelte";
+        import SignButtons from "../Components/SignButtons.svelte";
 </script>
 
 <main>
-        <!-- <SignButtons /> -->
+        <SignButtons />
 </main>
 
 <style>
