@@ -39,7 +39,7 @@
         <form on:submit={signup}>
                 <div class="wrapper-input">
                         <label for="E-mail">E-mail</label>
-                        <input type="email" bind:value={email} id="E-mail" name="E-mail" placeholder="Your e-mail" />
+                        <input type="email" bind:value={email} id="E-mail" name="E-mail" placeholder="Your E-mail" />
                 </div>
                 <div class="wrapper-input">
                         <label for="Password">Password </label>
@@ -48,7 +48,8 @@
                                 bind:value={password}
                                 id="Password"
                                 name="Password"
-                                placeholder="6 characters minimum characters"
+                                placeholder="
+minimum of 6 characters"
                         />
                 </div>
 
@@ -96,6 +97,10 @@
                 border: 1px solid pink;
                 background-color: transparent;
                 color: rgb(229, 228, 228);
+        }
+        input::placeholder{
+                color: rgba(98, 173, 238, 0.585);
+                font-weight: 100;
         }
         label {
                 margin-left: -90px;

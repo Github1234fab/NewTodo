@@ -43,8 +43,20 @@ a{
 }
 .caddie{
         width: auto;
-        height: 200px;
-          margin-left: -50px;
+        height:130px;
+          margin-left: -20px;
+          rotate: -10deg;
 }
    
+
+   @media (max-width: 768px) {
+        .buttons-container {
+                width: 100%;
+        }
+        .caddie{
+                width: auto;
+                height: 100px;
+        }
+}
+
 </style>

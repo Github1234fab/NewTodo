@@ -14,6 +14,8 @@
                         const q = query(collection(db, "todos"), where("userId", "==", user.uid));
                         onSnapshot(q, (snapshot) => {
                                 snap = snapshot.docs;
+                                console.log(user.uid);
+                                console.log(snap);
                         });
                 } else {
                         snap = null;
@@ -33,8 +35,10 @@
                 };
 
                 await addDoc(collection(db, "todos"), inputData);
+                console.log(inputData);
 
-                produit="";
+                produit = "";
+                console.log(produit);
         }
 
         //fonction pour supprimer un produit de la base de données en fonction de son id
@@ -46,31 +50,15 @@
         }
 </script>
 
-
 <div class="app-section">
         <form on:submit={handleSubmit}>
-                <input type="text" bind:value={produit} />
+                <div class="wrapper-input">
+                        <label for="Produits">Your products</label>
+                        <input type="text" bind:value={produit} id="produits" />
+                </div>
                 <button type="submit">Submit</button>
         </form>
-        {#if snap}
-                <ul>
-                        {#each snap as doc}
-                                <li>
-                                        {doc.data().produit}
-                                        <button on:click={() => handleClick(doc.id)}>x</button>
-                                </li>
-                        {/each}
-                </ul>
-        {/if}
-</div>
-
-
-<div class="app-section">
-        <form on:submit={handleSubmit}>
-                <input type="text" bind:value={produit} />
-                <button type="submit">Submit</button>
-        </form>
-
+        <h2>Your list</h2>
         {#if snap}
                 <ul>
                         {#each snap as doc}
@@ -83,6 +71,24 @@
         {/if}
 </div>
 
+<!-- <div class="app-section">
+        <form on:submit={handleSubmit}>
+                <input type="text" bind:value={produit} />
+                <button type="submit">Submit</button>
+        </form>
+  
+        {#if snap}
+                <ul>
+                        {#each snap as doc}
+                                <li>
+                                        {doc.data().produit}
+                                        <button class="delete" on:click={() => handleClick(doc.id)}>x</button>
+                                </li>
+                        {/each}
+                </ul>
+        {/if}
+</div> -->
+
 <style>
         .app-section {
                 display: flex;
@@ -94,7 +100,13 @@
                 color: rgb(255, 255, 255);
                 gap: 30px;
         }
-
+        .wrapper-input {
+                display: flex;
+                flex-direction: column;
+                justify-content: baseline;
+                align-items: baseline;
+                gap: 8px;
+        }
         form {
                 display: flex;
                 flex-direction: column;
@@ -105,7 +117,6 @@
                 border-radius: 20px;
                 margin-top: -50px;
         }
-      
 
         input {
                 padding: 0.5rem;
@@ -148,16 +159,22 @@
                 flex-direction: column;
                 width: 90%;
                 padding: 1rem 2rem;
-                height: auto;
+                max-height: 400px;
                 flex-wrap: wrap;
                 border: 1px solid pink;
                 border-radius: 10px;
                 gap: 20px;
         }
         ul > * {
-                flex: 1 1 30%;
+                flex: 1 1 10%;
         }
         li {
                 color: white;
+        }
+        h2 {
+                color: white;
+                font-size: 1rem;
+                font-weight: 400;
+                margin-left: -760px;
         }
 </style>

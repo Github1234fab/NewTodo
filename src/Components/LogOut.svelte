@@ -12,7 +12,7 @@
         }
 </script>
 <section class="header">
-        <a class="home-link" href="/">ToDo</a>
+        <a class="home-link" href="/"><i class="fa-solid fa-cart-shopping"></i></a>
   
 <button on:click={handleSignOut}>log out</button>
 </section>
