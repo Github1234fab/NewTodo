@@ -5,8 +5,15 @@
 
         let email = "";
         let password = "";
+        let eyeOpen = false;
 
         const auth = getAuth();
+
+        //fonction pour toggle l'icon Eye
+        function eyeOpenToggle() {
+                eyeOpen = !eyeOpen;
+                console.log(eyeOpen);
+        }
 
         //fonction pour créer un utilisateur avec un email et un mot de passe. Si la création est réussie, on ajoute l'utilisateur à la collection "users" dans Firestore
 
@@ -37,23 +44,46 @@
 <section class="signUp-section">
         <h1>SignUp</h1>
         <form on:submit={signup}>
-                <div class="wrapper-input">
-                        <label for="E-mail">E-mail</label>
-                        <input type="email" bind:value={email} id="E-mail" name="E-mail" placeholder="Your E-mail" />
-                </div>
-                <div class="wrapper-input">
-                        <label for="Password">Password </label>
-                        <input
-                                type="password"
-                                bind:value={password}
-                                id="Password"
-                                name="Password"
-                                placeholder="
-minimum of 6 characters"
-                        />
+                <div class="wrapper-inputs">
+                        <div class="wrapper-input">
+                                <label for="E-mail">E-mail</label>
+                                <input
+                                        type="email"
+                                        bind:value={email}
+                                        id="E-mail"
+                                        name="E-mail"
+                                        placeholder="Your E-mail"
+                                />
+                        </div>
+                        <div class="wrapper-input">
+                                {#if eyeOpen}
+                                        <label for="Password">Password </label>
+                                        <input
+                                                type="text"
+                                                bind:value={password}
+                                                name="Password"
+                                                id="Password"
+                                                placeholder="Your Password"
+                                        />
+                                {:else}
+                                        <label for="Password">Password </label>
+                                        <input
+                                                type="password"
+                                                bind:value={password}
+                                                name="Password"
+                                                id="Password"
+                                                placeholder="Your Password"
+                                        />
+                                {/if}
+
+                                <div class="wrapper-eye">
+                                        <button on:click={eyeOpenToggle} class="eye"><i class="fa-regular fa-eye"></i></button>
+                                </div>
+                        </div>
                 </div>
 
                 <button type="submit">Sign Up</button>
+
                 <p>
                         You haven't an account? <br />
                         Please, sign up or <a href="/Signin">sign in</a>
@@ -72,23 +102,51 @@ minimum of 6 characters"
                 color: rgb(255, 255, 255);
                 gap: 30px;
         }
+
         form {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 gap: 30px;
-                background-color: rgba(0, 0, 255, 0.709);
+                background-color: rgba(26, 26, 152, 0.709);
                 border-radius: 20px;
                 width: 25%;
-                height: 50%;
+                height: 80%;
+        }
+        .wrapper-inputs {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                width: 100%;
+                margin-top: 50px;
         }
         .wrapper-input {
                 display: flex;
-                flex-direction: column;
                 justify-content: baseline;
                 align-items: baseline;
                 gap: 8px;
+                flex-direction: column;
+        }
+        .wrapper-eye {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 8px;
+                flex-direction: column;
+                margin-top: 20px;
+        }
+        .eye {
+                background-color: transparent;
+                border: none;
+                color: white;
+                font-size: 1rem;
+                cursor: pointer;
+                margin-top: 0;
+              border: 1px solid white;
+              cursor: pointer;
         }
         input {
                 padding: 0.5rem;
@@ -98,8 +156,8 @@ minimum of 6 characters"
                 background-color: transparent;
                 color: rgb(229, 228, 228);
         }
-        input::placeholder{
-                color: rgba(98, 173, 238, 0.585);
+        input::placeholder {
+                color: rgba(98, 173, 238, 0.864);
                 font-weight: 100;
         }
         label {
@@ -114,19 +172,20 @@ minimum of 6 characters"
                 background-color: #1277dd;
                 border: none;
                 font-size: 1rem;
-                font-weight: 300;
+                font-weight: 600;
+                margin-top: 40px;
         }
         p {
-                color: rgba(255, 255, 255, 0.775);
-                font-weight: 200;
+                color: white;
+                font-weight: 300;
         }
         a {
                 color: white;
         }
 
-            @media (max-width: 768px) {
+        @media (max-width: 768px) {
                 form {
-                        width: 90%;
+                        width: 70%;
                 }
         }
 </style>

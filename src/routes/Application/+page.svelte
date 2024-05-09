@@ -13,9 +13,18 @@
                 if (user) {
                         const q = query(collection(db, "todos"), where("userId", "==", user.uid));
                         onSnapshot(q, (snapshot) => {
-                                snap = snapshot.docs;
+                                snap = snapshot.docs.sort((a, b) => {
+                                        const produitA = a.data().produit.toUpperCase(); // ignore upper and lowercase
+                                        const produitB = b.data().produit.toUpperCase(); // ignore upper and lowercase
+                                        if (produitA < produitB) {
+                                                return -1;
+                                        }
+                                        if (produitA > produitB) {
+                                                return 1;
+                                        }
+                                        return 0; // names must be equal
+                                });
                                 console.log(user.uid);
-                                console.log(snap);
                         });
                 } else {
                         snap = null;
@@ -56,7 +65,7 @@
                         <label for="Produits">Your products</label>
                         <input type="text" bind:value={produit} id="produits" />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">Add</button>
         </form>
         <h2>Your list</h2>
         {#if snap}
@@ -70,24 +79,6 @@
                 </ul>
         {/if}
 </div>
-
-<!-- <div class="app-section">
-        <form on:submit={handleSubmit}>
-                <input type="text" bind:value={produit} />
-                <button type="submit">Submit</button>
-        </form>
-  
-        {#if snap}
-                <ul>
-                        {#each snap as doc}
-                                <li>
-                                        {doc.data().produit}
-                                        <button class="delete" on:click={() => handleClick(doc.id)}>x</button>
-                                </li>
-                        {/each}
-                </ul>
-        {/if}
-</div> -->
 
 <style>
         .app-section {
