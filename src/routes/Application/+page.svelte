@@ -86,7 +86,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                height: 100vh;
+                height: 100%;
                 background: linear-gradient(160deg, rgb(3, 3, 53), rgb(21, 21, 158));
                 color: rgb(255, 255, 255);
                 gap: 30px;
@@ -97,6 +97,7 @@
                 justify-content: baseline;
                 align-items: baseline;
                 gap: 8px;
+                margin-top: 140px;
         }
         form {
                 display: flex;
@@ -150,11 +151,12 @@
                 flex-direction: column;
                 width: 90%;
                 padding: 1rem 2rem;
-                max-height: 400px;
+            height: 100%;
                 flex-wrap: wrap;
                 border: 1px solid pink;
                 border-radius: 10px;
                 gap: 20px;
+                margin-bottom: 50px;
         }
         ul > * {
                 flex: 1 1 10%;
